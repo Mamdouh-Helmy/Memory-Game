@@ -185,6 +185,24 @@ body{
     -o-transform: rotateY(180deg);
     pointer-events: none;
 }
+@media only screen and (max-width: 1110px) {
+    .info-container {
+        width: 90%;
+        font-size: 18px;
+        display: block;
+    }
+    .memory-game {
+        width: 90%;
+    }
+    .memory-game .game-block {
+        flex: 1 0 20%;
+        margin: 0 5px 10px;
+    }
+    .info-container div{
+        margin: 10px auto 0 ;
+        width: fit-content;
+    }
+}
 @media only screen and (max-width: 768px) {
     .info-container {
         width: 90%;
