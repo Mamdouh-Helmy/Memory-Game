@@ -1,4 +1,4 @@
-let name = document.getElementById('name');
+let nameTable = document.querySelector('#name tbody');
 
 window.onload = function() {
     let getLocalstorge1 = JSON.parse(localStorage.getItem("name")) || [];
@@ -9,14 +9,14 @@ window.onload = function() {
     
     for (let i = 0; i < getLocalstorge1.length; i++) {
         tableData += `
-            <tr>
+            <tr class="text">
                 <td>${getLocalstorge1[i]}</td>
                 <td>${getLocalstorge2[i]}</td>
                 <td>${getLocalstorgecheckWinner[i]}</td>
             </tr>
         `;
     }
-    name.innerHTML += tableData;
+    nameTable.innerHTML += tableData;
 }
 
 let spanName = document.querySelector('.name span');
@@ -27,10 +27,6 @@ document.querySelector('.control-buttons span').onclick = function () {
     if(yourName === null || yourName === ''){
         spanName.innerHTML = '😡 حط اسم يعم';
     }else{
-        let getLocalstorge = JSON.parse(localStorage.getItem("name")) || [];
-        getLocalstorge.push(yourName);
-        localStorage.setItem('name' , JSON.stringify(getLocalstorge));
-
         spanName.innerHTML = yourName;
     }
 
@@ -40,7 +36,6 @@ document.querySelector('.control-buttons span').onclick = function () {
 
     countTimer(70)
 }
-
 
 let duration = 1000 , count = 1 , countDownInterval;
 
@@ -154,6 +149,11 @@ function winer(){
     }, 4000);
 
     if(spanName.innerHTML != '😡 حط اسم يعم'){
+
+        let getLocalstorge = JSON.parse(localStorage.getItem("name")) || [];
+        getLocalstorge.push(spanName.innerHTML);
+        localStorage.setItem('name' , JSON.stringify(getLocalstorge));
+
         if(count === 1){
             count = 0;
     
@@ -184,6 +184,11 @@ function field(){
     }, 5000);
 
     if(spanName.innerHTML != '😡 حط اسم يعم'){
+
+        let getLocalstorge = JSON.parse(localStorage.getItem("name")) || [];
+        getLocalstorge.push(spanName.innerHTML);
+        localStorage.setItem('name' , JSON.stringify(getLocalstorge));
+
         if(count === 1){
             count = 0;
     
@@ -222,4 +227,9 @@ function countTimer(time){
         }
 
     }, duration)
+}
+
+document.getElementById('clear').onclick = function () {
+    nameTable.remove()
+    localStorage.clear()
 }
