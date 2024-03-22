@@ -1,10 +1,10 @@
 let spanName = document.querySelector('.name span');
 
 document.querySelector('.control-buttons span').onclick = function () {
-    let yourName = prompt("Whats your Name?");
+    let yourName = prompt("أسمك ايه يا عسل ❤️😘 يا قمر");
 
     if(yourName === null || yourName === ''){
-        spanName.innerHTML = 'Unknown';
+        spanName.innerHTML = '😡 حط اسم يعم';
     }else{
         spanName.innerHTML = yourName;
     }
