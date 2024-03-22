@@ -214,13 +214,13 @@ body{
         width: 90%;
     }
     .memory-game .game-block {
-        flex: 1 0 20%;
+        flex: 1 0 15%;
         margin: 0 5px 10px;
         height: 100px;
     }
     .winner img,
     .field img{
-        width: 200px;
+        width: 300px;
         height: 300px;
     }
     .control-buttons span{
