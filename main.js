@@ -1,3 +1,24 @@
+let name = document.getElementById('name');
+
+window.onload = function() {
+    let getLocalstorge1 = JSON.parse(localStorage.getItem("name")) || [];
+    let getLocalstorge2 = JSON.parse(localStorage.getItem("score")) || [];
+    let getLocalstorgecheckWinner = JSON.parse(localStorage.getItem("winner")) || [];
+    
+    let tableData = ""; 
+    
+    for (let i = 0; i < getLocalstorge1.length; i++) {
+        tableData += `
+            <tr>
+                <td>${getLocalstorge1[i]}</td>
+                <td>${getLocalstorge2[i]}</td>
+                <td>${getLocalstorgecheckWinner[i]}</td>
+            </tr>
+        `;
+    }
+    name.innerHTML += tableData;
+}
+
 let spanName = document.querySelector('.name span');
 
 document.querySelector('.control-buttons span').onclick = function () {
@@ -6,14 +27,20 @@ document.querySelector('.control-buttons span').onclick = function () {
     if(yourName === null || yourName === ''){
         spanName.innerHTML = '😡 حط اسم يعم';
     }else{
+        let getLocalstorge = JSON.parse(localStorage.getItem("name")) || [];
+        getLocalstorge.push(yourName);
+        localStorage.setItem('name' , JSON.stringify(getLocalstorge));
+
         spanName.innerHTML = yourName;
     }
 
     document.querySelector('.control-buttons').style.display = "none";
 
-    countTimer(70)
+    document.getElementById('start').play()
 
+    countTimer(70)
 }
+
 
 let duration = 1000 , count = 1 , countDownInterval;
 
@@ -119,19 +146,61 @@ function shuffle(array){
 function winer(){
     document.getElementById('success-1').play();
     document.querySelector('.winner').style.display = 'block';
+    document.getElementById('start').pause();
+    document.getElementById('field-1').pause();
 
     setTimeout(() => {
         location.reload();
     }, 4000);
+
+    if(spanName.innerHTML != '😡 حط اسم يعم'){
+        if(count === 1){
+            count = 0;
+    
+            let getLocalstorge = JSON.parse(localStorage.getItem("score")) || [];
+            getLocalstorge.push(count);
+            localStorage.setItem('score' , JSON.stringify(getLocalstorge));
+        }else{
+            count -= 1;
+            let getLocalstorge = JSON.parse(localStorage.getItem("score")) || [];
+            getLocalstorge.push(count);
+            localStorage.setItem('score' , JSON.stringify(getLocalstorge));
+        }
+
+        let getLocalstorgecheckWinner = JSON.parse(localStorage.getItem("winner")) || [];
+        getLocalstorgecheckWinner.push("🤗فائز");
+        localStorage.setItem('winner' , JSON.stringify(getLocalstorgecheckWinner));
+    }
 }
 
 function field(){
     document.getElementById('field-1').play();
     document.querySelector('.field').style.display = 'block';
+    document.getElementById('start').pause();
+    document.getElementById('success-1').pause();
 
     setTimeout(() => {
         location.reload();
     }, 5000);
+
+    if(spanName.innerHTML != '😡 حط اسم يعم'){
+        if(count === 1){
+            count = 0;
+    
+            let getLocalstorge = JSON.parse(localStorage.getItem("score")) || [];
+            getLocalstorge.push(count);
+            localStorage.setItem('score' , JSON.stringify(getLocalstorge));
+        }else{
+            count -= 1;
+            let getLocalstorge = JSON.parse(localStorage.getItem("score")) || [];
+            getLocalstorge.push(count);
+            localStorage.setItem('score' , JSON.stringify(getLocalstorge));
+        }
+
+        let getLocalstorgecheckWinner = JSON.parse(localStorage.getItem("winner")) || [];
+        getLocalstorgecheckWinner.push("😡خاسر");
+        localStorage.setItem('winner' , JSON.stringify(getLocalstorgecheckWinner));
+    }
 }
 
 function countTimer(time){
