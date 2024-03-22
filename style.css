@@ -214,9 +214,9 @@ body{
         width: 90%;
     }
     .memory-game .game-block {
-        flex: 1 0 15%;
+        flex: 1 0 19%;
         margin: 0 5px 10px;
-        height: 100px;
+        height: 80px;
     }
     .winner img,
     .field img{
