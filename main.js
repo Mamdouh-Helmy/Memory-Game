@@ -32,7 +32,8 @@ document.querySelector('.control-buttons span').onclick = function () {
 
     document.querySelector('.control-buttons').style.display = "none";
 
-    document.getElementById('start').play()
+    document.getElementById('start').play();
+    document.getElementById('start').loop = true;
 
     countTimer(120)
 }
