@@ -120,7 +120,7 @@ body{
     margin: 20px auto;
 }
 .memory-game .game-block{
-    height: 130px;
+    height: 110px;
     transition: 0.5s;
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;
@@ -207,6 +207,31 @@ td{
     background-color: #eee;
     color: rgb(159, 115, 255);
 }
+.clear{
+    display: block;
+    width: fit-content;
+    margin: 10px auto 0;
+    padding: 6px 10px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(159, 115, 255);
+    color: white;
+    font-weight: bolder;
+    font-size: 17px;
+    transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+}
+.clear:hover{
+    background-color: rgb(91, 55, 168);
+}
 @media only screen and (max-width: 1110px) {
     .info-container {
         width: 90%;
@@ -241,7 +266,7 @@ td{
     .memory-game .game-block {
         flex: 1 0 19%;
         margin: 0 5px 10px;
-        height: 80px;
+        height: 75px;
     }
     .winner img,
     .field img{
