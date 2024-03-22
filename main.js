@@ -34,7 +34,7 @@ document.querySelector('.control-buttons span').onclick = function () {
 
     document.getElementById('start').play()
 
-    countTimer(70)
+    countTimer(120)
 }
 
 let duration = 1000 , count = 1 , countDownInterval;
