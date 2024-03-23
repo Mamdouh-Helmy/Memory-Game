@@ -10,14 +10,51 @@ window.onload = function() {
     for (let i = 0; i < getLocalstorge1.length; i++) {
         tableData += `
             <tr class="text">
-                <td>${getLocalstorge1[i]}</td>
-                <td>${getLocalstorge2[i]}</td>
-                <td>${getLocalstorgecheckWinner[i]}</td>
+                <td class="one">${getLocalstorge1[i]}</td>
+                <td class="two">${getLocalstorge2[i]}</td>
+                <td class="three">${getLocalstorgecheckWinner[i]}</td>
+                <td><button class="remove">أحذف</button></td>
             </tr>
         `;
     }
     nameTable.innerHTML += tableData;
+
+
+    document.querySelectorAll('.remove').forEach(button => {
+        button.addEventListener('click', function(event) {
+            
+            const row = event.target.closest('tr');
+            const oneValue = row.querySelector('.one').innerText;
+            const twoValue = row.querySelector('.two').innerText;
+            const threeValue = row.querySelector('.three').innerText;
+
+            let stordItems1 = JSON.parse(localStorage.getItem('name')) || [];
+            let stordItems2 = JSON.parse(localStorage.getItem('score')) || [];
+            let stordItems3 = JSON.parse(localStorage.getItem('winner')) || [];
+            
+            let index1 = stordItems1.indexOf(oneValue);
+            let index2 = stordItems2.indexOf(parseInt(twoValue));
+            let index3 = stordItems3.indexOf(threeValue);
+
+            if(index1 > -1 && index2 > -1 && index3 > -1){
+
+                stordItems1.splice(index1 , 1)
+                localStorage.setItem('name' , JSON.stringify(stordItems1))
+
+                stordItems2.splice(index2 , 1)
+                localStorage.setItem('score' , JSON.stringify(stordItems2))
+
+                stordItems3.splice(index3 , 1)
+                localStorage.setItem('winner' , JSON.stringify(stordItems3))
+            }
+
+            row.remove();
+        });
+    });
+    
+
 }
+
 
 let spanName = document.querySelector('.name span');
 
@@ -237,3 +274,4 @@ document.getElementById('clear').onclick = function () {
     nameTable.remove();
     localStorage.clear();
 }
+
