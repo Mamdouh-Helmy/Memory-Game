@@ -32,8 +32,7 @@ document.querySelector('.control-buttons span').onclick = function () {
 
     document.querySelector('.control-buttons').style.display = "none";
 
-    document.getElementById('start').play();
-    document.getElementById('start').loop = true;
+    document.getElementById('start').play()
 
     countTimer(80)
 }
@@ -172,6 +171,8 @@ function winer(){
         getLocalstorgecheckWinner.push("🤗فائز");
         localStorage.setItem('winner' , JSON.stringify(getLocalstorgecheckWinner));
     }
+
+    clearInterval(countDownInterval)
 }
 
 function field(){
@@ -207,6 +208,8 @@ function field(){
         getLocalstorgecheckWinner.push("😡خاسر");
         localStorage.setItem('winner' , JSON.stringify(getLocalstorgecheckWinner));
     }
+
+    clearInterval(countDownInterval)
 }
 
 function countTimer(time){
@@ -231,6 +234,6 @@ function countTimer(time){
 }
 
 document.getElementById('clear').onclick = function () {
-    nameTable.remove()
-    localStorage.clear()
+    nameTable.remove();
+    localStorage.clear();
 }
