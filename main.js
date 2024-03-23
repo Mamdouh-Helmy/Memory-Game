@@ -19,42 +19,26 @@ window.onload = function() {
     }
     nameTable.innerHTML += tableData;
 
-
+    
     document.querySelectorAll('.remove').forEach(button => {
         button.addEventListener('click', function(event) {
-            
             const row = event.target.closest('tr');
-            const oneValue = row.querySelector('.one').innerText;
-            const twoValue = row.querySelector('.two').innerText;
-            const threeValue = row.querySelector('.three').innerText;
-
-            let stordItems1 = JSON.parse(localStorage.getItem('name')) || [];
-            let stordItems2 = JSON.parse(localStorage.getItem('score')) || [];
-            let stordItems3 = JSON.parse(localStorage.getItem('winner')) || [];
-            
-            let index1 = stordItems1.indexOf(oneValue);
-            let index2 = stordItems2.indexOf(parseInt(twoValue));
-            let index3 = stordItems3.indexOf(threeValue);
-
-            if(index1 > -1 && index2 > -1 && index3 > -1){
-
-                stordItems1.splice(index1 , 1)
-                localStorage.setItem('name' , JSON.stringify(stordItems1))
-
-                stordItems2.splice(index2 , 1)
-                localStorage.setItem('score' , JSON.stringify(stordItems2))
-
-                stordItems3.splice(index3 , 1)
-                localStorage.setItem('winner' , JSON.stringify(stordItems3))
-            }
-
+            const [oneValue, twoValue, threeValue] = Array.from(row.querySelectorAll('.one, .two, .three')).map(cell => cell.innerText);
+            const keys = ['name', 'score', 'winner'];
+    
+            keys.forEach(key => {
+                let storedItems = JSON.parse(localStorage.getItem(key)) || [];
+                const index = storedItems.indexOf(key === 'score' ? parseInt(twoValue) : key === 'name' ? oneValue : threeValue);
+                if (index > -1) {
+                    storedItems.splice(index, 1);
+                    localStorage.setItem(key, JSON.stringify(storedItems));
+                }
+            });
+    
             row.remove();
         });
     });
-    
-
 }
-
 
 let spanName = document.querySelector('.name span');
 
