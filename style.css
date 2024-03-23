@@ -229,9 +229,6 @@ td{
     -ms-transition: 0.3s;
     -o-transition: 0.3s;
 }
-.clear:hover{
-    background-color: rgb(91, 55, 168);
-}
 .remove{
     border: none;
     background-color: rgb(159, 115, 255);
@@ -251,6 +248,7 @@ td{
     -ms-transition: 0.3s;
     -o-transition: 0.3s;
 }
+.clear:hover,
 .remove:hover{
     background-color: rgb(91, 55, 168);
 }
